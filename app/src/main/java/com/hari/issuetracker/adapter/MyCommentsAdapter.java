@@ -58,7 +58,7 @@ public class MyCommentsAdapter extends RecyclerView.Adapter<MyCommentsAdapter.Vi
                 parent.getContext());
         View v = inflater.inflate(R.layout.comments_card, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(v);
+        ViewHolder vh = new  ViewHolder(v);
         return vh;
     }
 
