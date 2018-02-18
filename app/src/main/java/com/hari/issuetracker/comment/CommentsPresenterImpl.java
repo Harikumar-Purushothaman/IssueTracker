@@ -43,7 +43,6 @@ public class CommentsPresenterImpl implements CommentsPresenter, FetchCommentsIn
         this.items = items;
         if (commentsView != null) {
             commentsView.setItems(items);
-            commentsView.hideProgress();
         }
     }
 
