@@ -19,7 +19,7 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:background="#efeff4" />
+            android:background="@color/bgcolor" />
 
         <TextView
             android:id="@+id/issue_title"
