@@ -1,5 +1,9 @@
 package com.hari.issuetracker.main;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.hari.issuetracker.comment.CommentsActivity;
 import com.hari.issuetracker.model.IssueListItem;
 
 import java.util.List;
@@ -11,11 +15,13 @@ import java.util.List;
 public class MainPresenterImpl implements MainPresenter, FetchIssuesInteractor.OnFinishedListener {
 
     private MainView mainView;
+    private Context mContext;
     private FetchIssuesInteractor fetchIssuesInteractor;
     private List<IssueListItem> items;
 
-    public MainPresenterImpl(MainView mainView, FetchIssuesInteractor fetchIssuesInteractor) {
+    public MainPresenterImpl(MainView mainView, FetchIssuesInteractor fetchIssuesInteractor, Context ctx) {
         this.mainView = mainView;
+        mContext = ctx;
         this.fetchIssuesInteractor = fetchIssuesInteractor;
     }
 
@@ -31,7 +37,7 @@ public class MainPresenterImpl implements MainPresenter, FetchIssuesInteractor.O
     @Override
     public void onItemClicked(int position) {
         if (mainView != null) {
-            mainView.showMessage(String.format("Position %d clicked", position + 1));
+            mainView.showComments(items.get(position).getComments_url());
         }
     }
 

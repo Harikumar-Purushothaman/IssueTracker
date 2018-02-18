@@ -17,4 +17,6 @@ public interface MainView {
     void setItems(List<IssueListItem> items);
 
     void showMessage(String message);
+
+    void showComments(String url);
 }

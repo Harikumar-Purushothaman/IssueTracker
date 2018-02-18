@@ -7,14 +7,18 @@ import java.util.List;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 public interface GithubAPI {
     String ENDPOINT = "https://api.github.com/repos/crashlytics/secureudid/";
+    String ISSUES = "issues";
+    String COMMENTS = "comments";
+    String SLASH = "/";
 
-    @GET("{url}")
-    Single<List<CommentsListItem>> getComments(@Url String url);
+    @GET(ISSUES + SLASH + "{url}" + SLASH + COMMENTS)
+    Single<List<CommentsListItem>> getComments(@Path("url") String url);
 
-    @GET("issues")
+    @GET(ISSUES)
     Single<List<IssueListItem>> getIssues();
 }

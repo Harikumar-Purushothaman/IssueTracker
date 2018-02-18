@@ -28,20 +28,16 @@ public class MyCommentsAdapter extends RecyclerView.Adapter<MyCommentsAdapter.Vi
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView txtIssueTitle;
         public TextView txtIssueDesc;
         public TextView txtIssueAuthorName;
-        public TextView txtIssueLastUpdate;
         public ImageView imgAvatar;
         public View layout;
 
         public ViewHolder(View v) {
             super(v);
             layout = v;
-            txtIssueTitle = (TextView) v.findViewById(R.id.issue_title);
             txtIssueDesc = (TextView) v.findViewById(R.id.issue_desc);
             txtIssueAuthorName = (TextView) v.findViewById(R.id.issue_author_name);
-            txtIssueLastUpdate = (TextView) v.findViewById(R.id.issue_last_update);
             imgAvatar = (ImageView) v.findViewById(R.id.issue_avatar);
         }
     }
@@ -60,7 +56,7 @@ public class MyCommentsAdapter extends RecyclerView.Adapter<MyCommentsAdapter.Vi
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
-        View v = inflater.inflate(R.layout.item_card, parent, false);
+        View v = inflater.inflate(R.layout.comments_card, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -74,7 +70,6 @@ public class MyCommentsAdapter extends RecyclerView.Adapter<MyCommentsAdapter.Vi
         final CommentsListItem item = values.get(position);
         holder.txtIssueDesc.setText(item.getBody());
         holder.txtIssueAuthorName.setText(item.getUser().getLogin());
-        holder.txtIssueLastUpdate.setText(item.getUpdated_at());
         Picasso.with(mContext).load(item.getUser().getAvatar_url()).into(holder.imgAvatar);
     }
 

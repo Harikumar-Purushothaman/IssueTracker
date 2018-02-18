@@ -16,11 +16,13 @@ public class CommentsPresenterImpl implements CommentsPresenter, FetchCommentsIn
 
     private CommentsView commentsView;
     private FetchCommentsInteractor fetchCommentsInteractor;
+    private String url;
     private List<CommentsListItem> items;
 
-    public CommentsPresenterImpl(CommentsView commentsView, FetchCommentsInteractor fetchCommentsInteractor) {
+    public CommentsPresenterImpl(CommentsView commentsView, FetchCommentsInteractor fetchCommentsInteractor, String url) {
         this.commentsView = commentsView;
         this.fetchCommentsInteractor = fetchCommentsInteractor;
+        this.url = url;
     }
 
     @Override
@@ -28,8 +30,7 @@ public class CommentsPresenterImpl implements CommentsPresenter, FetchCommentsIn
         if (commentsView != null) {
             commentsView.showProgress();
         }
-
-        fetchCommentsInteractor.fetchComments(this);
+        fetchCommentsInteractor.fetchComments(this, url);
     }
 
     @Override

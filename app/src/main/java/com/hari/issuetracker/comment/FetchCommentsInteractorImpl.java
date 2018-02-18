@@ -42,6 +42,7 @@ public class FetchCommentsInteractorImpl implements FetchCommentsInteractor {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(GithubAPI.ENDPOINT)
                 .client(new OkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -51,9 +52,13 @@ public class FetchCommentsInteractorImpl implements FetchCommentsInteractor {
     }
 
     @Override
-    public void fetchComments(final OnFinishedListener listener) {
+    public void fetchComments(final OnFinishedListener listener, String url) {
         this.listener = listener;
-        compositeDisposable.add(githubAPI.getComments("")
+        url = (url.replace(GithubAPI.ENDPOINT, ""));
+        url = (url.replace(GithubAPI.ISSUES, ""));
+        url = (url.replace(GithubAPI.COMMENTS, ""));
+        url = (url.replace(GithubAPI.SLASH, ""));
+        compositeDisposable.add(githubAPI.getComments(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(getIssuesObserver()));

@@ -14,5 +14,5 @@ public interface FetchCommentsInteractor {
         void onFinished(List<CommentsListItem> issues);
     }
 
-    void fetchComments(OnFinishedListener listener);
+    void fetchComments(OnFinishedListener listener, String url);
 }
