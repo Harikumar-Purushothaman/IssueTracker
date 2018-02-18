@@ -12,6 +12,10 @@ import com.hari.issuetracker.R;
 import com.hari.issuetracker.model.IssueListItem;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,8 +78,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.txtIssueTitle.setText(item.getTitle());
         holder.txtIssueDesc.setText(item.getBody());
         holder.txtIssueAuthorName.setText(item.getUser().getLogin());
-        holder.txtIssueLastUpdate.setText(item.getUpdated_at());
+        holder.txtIssueLastUpdate.setText(getDate(item.getUpdated_at()));
         Picasso.with(mContext).load(item.getUser().getAvatar_url()).into(holder.imgAvatar);
+    }
+
+    private String getDate(String updated_at) {
+        String formattedTime = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat output = new SimpleDateFormat("MM-dd-yyyy");
+        Date d = null;
+        try {
+            d = sdf.parse(updated_at);
+            formattedTime = output.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return formattedTime;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
