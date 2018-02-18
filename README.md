@@ -7,4 +7,4 @@ Display list of issues in secureudid and upon clicking issue display list of com
 3. Android Support Libraries (CardView,RecyclerView,SwipeRefreshLayout)
 
 *********DESIGN PATTERN USED*********
-Model-View-Presenter (MVP)
+1. Model-View-Presenter (MVP)
